@@ -1,17 +1,30 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Script Name: main.py
+Description: A script to create labels on a PDF page.
+Author: Holger Zernetsch
+Date: 2025-02-17
+Version: 0.5
+License: GNU General Public License v3.0 or later (GPL-3.0+)
+"""
+
 # pip install pandas reportlab openpyxl
 # pyinstaller --onefile --add-data "stag-sans-thin.ttf;." --add-data "stag-sans-book.ttf;." --add-data "stag-sans-light-italic.ttf;." --add-data "stag-sans-medium.ttf;." label_print.py
 
 import os
 import sys
-import pandas as pd
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.units import cm
-from reportlab.pdfgen import canvas
-from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.pdfbase import pdfmetrics
 from datetime import datetime
 import tkinter as tk
 from tkinter import filedialog, ttk
+
+import pandas as pd
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.units import cm
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfgen import canvas
 
 
 def get_resource_path(relative_path):
