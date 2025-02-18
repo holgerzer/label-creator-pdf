@@ -4,8 +4,17 @@
 
 # Install packages
 
-`pip install pandas reportlab openpyxl`
+` pip install -r requirements.txt`
 
 # Create executable
 
-`pyinstaller --onefile main.py`
+## Start clean virtual environment
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+## Build .exe-file
+
+`pyinstaller --onefile --noconsole --clean --strip --paths=src --hidden-import=gui --hidden-import=label_creator src/main.py`

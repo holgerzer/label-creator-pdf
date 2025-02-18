@@ -3,7 +3,7 @@
 
 import os
 import tkinter as tk
-from tkinter import filedialog, ttk
+from tkinter import filedialog, ttk, messagebox
 import pandas as pd
 from label_creator import create_labels
 
@@ -12,7 +12,7 @@ class LabelApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Label Generator")
-        self.root.geometry("600x550")
+        self.root.geometry("600x400")
 
         # Variables
         self.names_file_path = None
@@ -79,9 +79,13 @@ class LabelApp:
         """ Opens file dialog and allows user to select an Excel file. """
         self.names_file_path = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx;*.xls")])
         if self.names_file_path:
-            self.label_select_file.config(text=f"Selected file:\n{self.names_file_path}")
-            df = pd.read_excel(self.names_file_path)
-            self.update_dropdowns(df.columns.tolist())
+            try:
+                df = pd.read_excel(self.names_file_path)
+                self.label_select_file.config(text=f"Selected file:\n{self.names_file_path}")
+                self.update_dropdowns(df.columns.tolist())
+            except PermissionError as e:
+                messagebox.showerror("Permission Error", f"File is locked and open. Please close it and try again.")
+                return None
 
 
     def update_dropdowns(self, columns):
@@ -94,18 +98,11 @@ class LabelApp:
             self.last_name_combobox.set(columns[1])
 
         # Show UI elements for label customization
-        # elements_with_padding_5 = [
-        #     self.label_title, self.input_title, self.names_frame, self.logo_frame, self.button_create
-        # ]
         for widget in[self.label_title, self.input_title]:
             widget.pack(pady=5)
 
         for widget in[self.names_frame, self.logo_frame, self.button_create]:
             widget.pack(pady=20)
-
-        # Apply different padding for button_create
-        # self.button_create.pack(pady=10)
-
 
 
     def select_logo_1(self):
