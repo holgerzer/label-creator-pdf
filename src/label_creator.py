@@ -11,7 +11,7 @@ from reportlab.lib.units import cm
 from reportlab.pdfgen import canvas
 
 def get_resource_path(relative_path):
-    if getattr(sys, 'frozen', False):  # Falls als .exe ausgeführt
+    if getattr(sys, 'frozen', False):  # if executed as .EXE
         base_path = sys._MEIPASS
     else:
         base_path = os.path.abspath(".")
@@ -19,7 +19,7 @@ def get_resource_path(relative_path):
 
 
 def create_labels(names, title, logo_path_1=None, logo_path_2=None):
-
+    # create output file name with timestamp
     timestamp = datetime.now().strftime('%y%m%d_%H%M%S')
     output_file_path = f'{timestamp}_labels.pdf'
 
