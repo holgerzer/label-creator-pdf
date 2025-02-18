@@ -13,8 +13,10 @@
 ```bash
 python -m venv venv
 venv\Scripts\activate
-pip install -r requirements.txt
+pip install --no-cache-dir pandas openpyxl reportlab
+# pip install -r requirements.txt
 ```
+
 ## Build .exe-file
 
-`pyinstaller --onefile --noconsole --clean --strip --paths=src --hidden-import=gui --hidden-import=label_creator src/main.py`
+`pyinstaller --clean .\main.spec`
