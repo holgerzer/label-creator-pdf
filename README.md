@@ -8,4 +8,4 @@
 
 # Create executable
 
-`pyinstaller --onefile --add-data "stag-sans-thin.ttf;." --add-data "stag-sans-book.ttf;." --add-data "stag-sans-light-italic.ttf;." --add-data "stag-sans-medium.ttf;." label_print.py`
+`pyinstaller --onefile main.py`
